@@ -171,6 +171,9 @@
 						<div style="padding-bottom:20px" class="btn-group pull-right">
 							<a href="#" class="btn btn-info" data-toggle="modal" data-target="#nuevoRiesgo"><span class="glyphicon glyphicon-plus" ></span> Nuevo Riesgo</a>
 						</div>
+						<div style="padding-bottom:20px" class="btn-group pull-right">
+							<a href="#" class="btn btn-danger" data-toggle="modal" onclick="borrarTodos()"><span class="glyphicon glyphicon-minus" ></span> Borrar todos</a>
+						</div>
 						<table class="table table-bordered">
 							<thead>
 								<th class="text-center info">CODIGO</th>
@@ -580,6 +583,45 @@
 			}
 
 		});
+	}
+
+		function borrarTodos() {
+		x0p('', '¿Desea borrar todos los riesgos?', 'warning', function (resul) {
+			if ("cancel" != resul) {
+				var datos = {
+					"mode": "borrar-todos",
+					"id_proyecto": idProyecto
+				};
+				$.ajax({
+					data: datos,
+					url: "index.php",
+					type: 'POST',
+					success: function (response) {
+						if (response == 1) {
+							x0p('Exito!',
+								'Los riesgos se han eliminado satisfactoriamente.',
+								'ok', false);
+							cargarRiesgosCompletos();
+						} else {
+							x0p('Error!',
+								'No se puede eliminar.',
+								'error', false);
+						}
+					},
+					error: function (xhr, status, error) {
+						x0p('Error!',
+							'Se ha producido un error en la aplicación por favor intelo más tarde.',
+							'error', false);
+					}
+				});
+			}
+
+		});
+
+
+
 
 	}
+
+
 </script>

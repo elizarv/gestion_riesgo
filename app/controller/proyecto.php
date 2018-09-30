@@ -80,6 +80,12 @@ class Proyecto extends Controller {
     }
 
 
+    public function borrarTodos($id_proyecto){
+        $rel=$this->proyectoModel->borrarTodos($id_proyecto);
+        echo $rel;
+    }
+
+
 }
 
 ?>

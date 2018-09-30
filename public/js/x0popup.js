@@ -2,9 +2,9 @@
 
 var x0popup, x0p;
 var x0pDefaultConfig = {
-	title: 'Message',
+	title: "Message",
 	text: null,
-	theme: 'default',
+	theme: "default",
 	overlay: true,
 	width: '90%',
 	height: '50%',
@@ -31,7 +31,7 @@ var x0pDefaultConfig = {
 	buttonTextOk: 'OK',
 	buttonTextConfirm: 'Si',
 	buttonTextCancel: 'No',
-	buttonTextDefault: 'Button'
+	buttonTextDefault: "Button"
 };
 
 x0popup = x0p = function() {
@@ -42,7 +42,7 @@ x0popup = x0p = function() {
 	var body = document.body;
 
 	// Overwrite default config
-	if(typeof(personlization) == 'string') { // easy calling
+	if(typeof(personlization) == "string") { // easy calling
 		config.title = arguments[0];
 		(arguments[1] != undefined) && (config.text = arguments[1]);
 		(arguments[2] != undefined) && (config.type = arguments[2]);
@@ -76,7 +76,7 @@ x0popup = x0p = function() {
 		promiseReject = reject;
 
 		(config.overlay) && (str += '<div id="x0p-overlay" class="x0p-overlay' + ((!config.animation || !config.overlayAnimation) ? ' no-animation' : '') + '"></div>');
-		str += '<div id="x0popup" class="x0p ' + config.theme + (config.animation == false ? ' no-animation' : '') + (buttons.length == 0 ? ' no-button' : '') + '" style="' + generateStyle() + '">';
+		str += '<div id="x0popup" class="x0p ' + config.theme + (config.animation === false ? ' no-animation' : '') + (buttons.length == 0 ? ' no-button' : '') + '" style="' + generateStyle() + '">';
 			str += '<div class="content">';
 				str += textOnly ? '<div class="text-pure-wrapper">' : generateIcon() + '<div class="text-wrapper">';
 					str += '<div class="text-anchor">';
@@ -100,7 +100,7 @@ x0popup = x0p = function() {
 		// Add Handlers
 		addButtonHandlers();
 		// Use keydown because some special keys do not trigger keypress in Chrome
-		(config.keyResponse == true) && (document.addEventListener('keydown', x0pKeyHandler));
+		(config.keyResponse === true) && (document.addEventListener('keydown', x0pKeyHandler));
 
 		// Auto Focus Input DOM
 		var inputDOM = document.getElementById('x0p-input');
@@ -157,8 +157,8 @@ x0popup = x0p = function() {
 		if(buttons == null) {
 			buttons = [];
 			if(
-				config.showCancelButton == true ||
-				(config.showCancelButton != false && (config.type == 'warning' || config.type == 'input'))
+				config.showCancelButton === true ||
+				(config.showCancelButton !== false && (config.type == 'warning' || config.type == 'input'))
 			) {
 				buttons.push({
 					type: 'cancel',
@@ -178,13 +178,13 @@ x0popup = x0p = function() {
 			}
 		}
 
-		if(buttons.length == 0)
+		if(buttons.length === 0)
 			return '';
 
-		var buttonType = (config.keyResponse == true) ? 'button' : 'div';
+		var buttonType = (config.keyResponse === true) ? 'button' : 'div';
 		var buttonCount = buttons.length;
 		var buttonWidth = 'width: ' + (100.0 / buttonCount).toFixed(2) + '%; width: calc(100% / ' + buttonCount + ');';
-		var buttonOutline = (config.showButtonOutline == true) ? ' button-outline' : '';
+		var buttonOutline = (config.showButtonOutline === true) ? ' button-outline' : '';
 
 		str += '<div id="x0p-buttons" class="buttons">';
 		for(var i = 0; i < buttons.length; ++ i) {
@@ -227,7 +227,7 @@ x0popup = x0p = function() {
 				event.preventDefault ? event.preventDefault() : (event.returnValue = false);
 			});
 			// Update default index
-			(buttons[i].default == true) && (defaultIndex = i);
+			(buttons[i].default === true) && (defaultIndex = i);
 		}
 
 		if(config.keyResponse && buttons.length > 0) {
@@ -235,7 +235,7 @@ x0popup = x0p = function() {
 
 			// Loop on tabbing
 			lastButton.addEventListener('keydown', function(event) {
-				if(event.keyCode == 9) {
+				if(event.keyCode === 9) {
 					document.getElementById('x0p-button-0').focus();
 					event.preventDefault ? event.preventDefault() : (event.returnValue = false);
 				}
@@ -296,7 +296,7 @@ x0popup = x0p = function() {
 		var inputDOM = document.getElementById('x0p-input');
 
 		clearTimeout(timeoutFunc);
-		if(showLoading == true) {
+		if(showLoading === true) {
 			showX0l();
 		} else {
 			close();

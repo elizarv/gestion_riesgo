@@ -19,17 +19,17 @@
         this.options = $.extend({}, $.fn.twbsPagination.defaults, options);
 
         if (this.options.startPage < 1 || this.options.startPage > this.options.totalPages) {
-            throw new Error('Start page option is incorrect');
+            throw new Error("Start page option is incorrect");
         }
 
         this.options.totalPages = parseInt(this.options.totalPages);
         if (isNaN(this.options.totalPages)) {
-            throw new Error('Total pages option is not correct!');
+            throw new Error("Total pages option is not correct!");
         }
 
         this.options.visiblePages = parseInt(this.options.visiblePages);
         if (isNaN(this.options.visiblePages)) {
-            throw new Error('Visible pages option is not correct!');
+            throw new Error("Visible pages option is not correct!");
         }
 
         if (this.options.onPageClick instanceof Function) {
@@ -37,7 +37,7 @@
         }
 
         // hide if only one page exists
-        if (this.options.hideOnlyOnePage && this.options.totalPages == 1) {
+        if (this.options.hideOnlyOnePage && this.options.totalPages === 1) {
             this.$element.trigger('page', 1);
             return this;
         }
@@ -53,7 +53,7 @@
             }
         }
 
-        var tagName = (typeof this.$element.prop === 'function') ?
+        var tagName = (typeof this.$element.prop === "function") ?
             this.$element.prop('tagName') : this.$element.attr('tagName');
 
         if (tagName === 'UL') {
@@ -64,7 +64,7 @@
 
         this.$listContainer.addClass(this.options.paginationClass);
 
-        if (tagName !== 'UL') {
+        if (tagName !== "UL") {
             this.$element.append(this.$listContainer);
         }
 
@@ -202,21 +202,21 @@
                     pageType = $this.data('page-type');
 
                 switch (pageType) {
-                    case 'page':
-                        if ($this.data('page') === pages.currentPage) {
+                    case "page":
+                        if ($this.data("page") === pages.currentPage) {
                             $this.addClass(_this.options.activeClass);
                         }
                         break;
-                    case 'first':
+                    case "first":
                             $this.toggleClass(_this.options.disabledClass, pages.currentPage === 1);
                         break;
-                    case 'last':
+                    case "last":
                             $this.toggleClass(_this.options.disabledClass, pages.currentPage === _this.options.totalPages);
                         break;
-                    case 'prev':
+                    case "prev":
                             $this.toggleClass(_this.options.disabledClass, !_this.options.loop && pages.currentPage === 1);
                         break;
-                    case 'next':
+                    case "next":
                             $this.toggleClass(_this.options.disabledClass,
                                 !_this.options.loop && pages.currentPage === _this.options.totalPages);
                         break;
